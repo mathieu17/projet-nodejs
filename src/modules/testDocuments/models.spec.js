@@ -3,26 +3,30 @@ import { expect } from 'chai';
 import model from './models';
 
 describe('model', () => {
-  it('should be a joi schema', () => {
-    expect(model).to.be.an('object');
-  });
+  describe('where somthing went wrong', () => {
+    it('should catch if model is not valid', (done) => {
+      const data = {
+        country: 'FR',
+      };
 
-  it('should catch if model is not valid', (done) => {
-    const data = {
-      country: 'FR',
-    };
-
-    joi.validate(data, model).catch(() => {
-      done();
+      joi.validate(data, model).catch(() => {
+        done();
+      });
     });
   });
 
-  it('should works', () => {
-    const data = {
-      firstName: 'Sarah',
-      lastName: 'Bolo',
-    };
 
-    return joi.validate(data, model);
+  describe('When all is allright', () => {
+    it('should be a joi schema', () => {
+      expect(model).to.be.an('object');
+    });
+    it('should works', () => {
+      const data = {
+        firstName: 'Sarah',
+        lastName: 'Bolo',
+      };
+
+      return joi.validate(data, model);
+    });
   });
 });

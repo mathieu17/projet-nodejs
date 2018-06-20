@@ -1,0 +1,48 @@
+FORMAT: 1A
+HOST: http://localhost:3000
+
+# Todo App
+
+# Group Lists
+## Get lists [GET /lists{?first}{?offset}{?term}]
++ Response 200 (application/json)
+  + Attributes ([List])
+
+## Create a list [POST /lists]
++ Body
+  `{ name: "A great name", description: "A great description" }`
++ Response 200 (application/json)
+  + Attributes (List)
+
+## Get a list [GET /lists/{listId}]
++ Response 200 (application/json)
+  + Attributes (List)
+
+# Group Tasks
+## Get tasks [GET /lists/{listId}/tasks{?first}{?offset}{?term}]
++ Response 200 (application/json)
+  + Attributes ([Task])
+
+## Create a list [POST /lists/{listId}/tasks]
++ Body
+  `{ name: "A great task name", completed: false }`
++ Response 200 (application/json)
+  + Attributes (Task)
+
+## Get a task [GET /lists/{listId}/tasks/{taskId}]
++ Response 200 (application/json)
+  + Attributes (Task)
+
+
+# Data Structures
+
+## List (object)
++ id (string)
++ name (string)
++ description (string)
+
+## Task (object)
++ id (string)
++ listId (string)
++ name (string)
++ completed (boolean)

@@ -7,7 +7,9 @@
     "start": "./node_modules/.bin/pm2 start pm2.yml",
     "stop": "./node_modules/.bin/pm2 delete pm2.yml",
     "logs": "./node_modules/.bin/pm2 logs",
-    "test": "./node_modules/.bin/mocha ./src/**/*.spec.js --require babel-register"
+    "test-unit": "./node_modules/.bin/mocha ./src/**/*.spec.js --require babel-register",
+    "test-lint": "./node_modules/.bin/eslint ./src/**",
+    "test": "npm run test-lint && npm run test-unit"
   },
   "repository": {
     "type": "git",
