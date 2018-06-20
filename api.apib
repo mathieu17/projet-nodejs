@@ -6,7 +6,7 @@ HOST: http://localhost:3000
 # Group Lists
 ## Get lists [GET /lists{?first}{?offset}{?term}]
 + Response 200 (application/json)
-  + Attributes ([List])
+  + Attributes (array[List])
 
 ## Create a list [POST /lists]
 + Body
@@ -14,14 +14,21 @@ HOST: http://localhost:3000
 + Response 200 (application/json)
   + Attributes (List)
 
-## Get a list [GET /lists/{listId}]
+## Manage a list [/lists/{listId}]
+### Get a list [GET]
++ Response 200 (application/json)
+  + Attributes (List)
+
+### Update a list [PATCH]
++ Body
+  `{ name: "A great name", description: "A great description" }`
 + Response 200 (application/json)
   + Attributes (List)
 
 # Group Tasks
 ## Get tasks [GET /lists/{listId}/tasks{?first}{?offset}{?term}]
 + Response 200 (application/json)
-  + Attributes ([Task])
+  + Attributes (array[Task])
 
 ## Create a list [POST /lists/{listId}/tasks]
 + Body
@@ -29,20 +36,30 @@ HOST: http://localhost:3000
 + Response 200 (application/json)
   + Attributes (Task)
 
-## Get a task [GET /lists/{listId}/tasks/{taskId}]
+## Single Taks management [/lists/{listId}/tasks/{taskId}]
+### Get a task [GET]
 + Response 200 (application/json)
   + Attributes (Task)
 
+### Update a task [PATCH]
++ Body
+  `{ name: "A great task name", completed: false }`
++ Response 200 (application/json)
+  + Attributes (Task)
+
+### Delete a task [DELETE]
++ Response 200 (application/json)
+  + Attributes (Task)
 
 # Data Structures
 
 ## List (object)
 + id (string)
-+ name (string)
++ name (string, required)
 + description (string)
 
 ## Task (object)
 + id (string)
-+ listId (string)
-+ name (string)
-+ completed (boolean)
++ listId (string, required)
++ name (string, required)
++ completed: false (boolean)
