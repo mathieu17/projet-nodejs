@@ -1,9 +1,11 @@
+import joi from 'joi';
 import mongodb from '../../clients/mongodb';
+import model from './models';
 
 function createOne(data) {
-  return mongodb()
-    .then(db => db.collection('test').insert(data))
-    .then(response => response.ops[0]);
+  return joi.validate(data, model).then(validatedData => mongodb()
+    .then(db => db.collection('test').insert(validatedData))
+    .then(response => response.ops[0]));
 }
 
 export default {
