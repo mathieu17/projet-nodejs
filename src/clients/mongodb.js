@@ -9,9 +9,9 @@ const {
 export default function () {
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, (err, client) => {
-      if (err) reject(err);
+      if (err) return reject(err);
 
-      resolve(client.db(name));
+      return resolve(client.db(name));
     });
   });
 }

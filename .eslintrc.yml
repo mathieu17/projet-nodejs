@@ -5,3 +5,10 @@ env:
 extends: airbnb-base
 parserOptions:
   sourceType: module
+rules:
+  arrow-body-style: 0
+overrides:
+  - files:
+      - "*.spec.js"
+    rules:
+      no-unused-expressions: off

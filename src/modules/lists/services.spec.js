@@ -3,11 +3,11 @@ import { expect } from 'chai';
 import services from './services';
 import clients from '../../clients';
 
-describe('services', () => {
+describe('modules > Lists > services', () => {
   let mongodbSpy;
   const db = {
     collection: sinon.spy(() => db),
-    insert: sinon.spy(() => ({
+    insertOne: sinon.spy(() => ({
       ops: [
         {
           todo: true,
@@ -27,14 +27,13 @@ describe('services', () => {
 
   it('should works', () => {
     const data = {
-      firstName: 'Sarah',
-      lastName: 'B',
+      name: 'A great list name',
     };
     return services.createOne(data).then((result) => {
       expect(result.todo).to.equal(true);
 
       expect(db.collection.callCount).to.equal(1);
-      expect(db.insert.callCount).to.equal(1);
+      expect(db.insertOne.callCount).to.equal(1);
       expect(mongodbSpy.callCount).to.equal(1);
     });
   });

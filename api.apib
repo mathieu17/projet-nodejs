@@ -24,6 +24,7 @@ HOST: http://localhost:3000
   `{ name: "A great name", description: "A great description" }`
 + Response 200 (application/json)
   + Attributes (List)
++ Response 404 (application/json)
 
 # Group Tasks
 ## Get tasks [GET /lists/{listId}/tasks{?first}{?offset}{?term}]
@@ -62,4 +63,5 @@ HOST: http://localhost:3000
 + id (string)
 + listId (string, required)
 + name (string, required)
++ description (string)
 + completed: false (boolean)
