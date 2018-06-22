@@ -3,6 +3,35 @@ HOST: http://localhost:3000
 
 # Todo App
 
+# Group Users
+## Get users [GET /users{?first}{?offset}{?term}]
++ Response 200 (application/json)
+  + Attributes (array[User])
+
+## Create a user [POST /users]
++ Body
+  `{ firstName: "john", email: "john.doe@gmail.com" }`
++ Response 200 (application/json)
+  + Attributes (User)
+
+## Manage a user [/users/{userEmail}]
+### Get a user [GET]
++ Response 200 (application/json)
+  + Attributes (User)
++ Response 404 (application/json)
+
+### Update a user [PATCH]
++ Body
+  `{ firstName: "john", lastName: "doe" }`
++ Response 200 (application/json)
+  + Attributes (User)
++ Response 404 (application/json)
+
+### Delete a user [DELETE]
++ Response 200 (application/json)
+  + Attributes (User)
++ Response 404 (application/json)
+
 # Group Lists
 ## Get lists [GET /lists{?first}{?offset}{?term}]
 + Response 200 (application/json)
@@ -18,6 +47,7 @@ HOST: http://localhost:3000
 ### Get a list [GET]
 + Response 200 (application/json)
   + Attributes (List)
++ Response 404 (application/json)
 
 ### Update a list [PATCH]
 + Body
@@ -41,27 +71,36 @@ HOST: http://localhost:3000
 ### Get a task [GET]
 + Response 200 (application/json)
   + Attributes (Task)
++ Response 404 (application/json)
 
 ### Update a task [PATCH]
 + Body
   `{ name: "A great task name", completed: false }`
 + Response 200 (application/json)
   + Attributes (Task)
++ Response 404 (application/json)
 
 ### Delete a task [DELETE]
 + Response 200 (application/json)
   + Attributes (Task)
++ Response 404 (application/json)
 
 # Data Structures
 
 ## List (object)
-+ id (string)
++ _id (string)
 + name (string, required)
 + description (string)
 
 ## Task (object)
-+ id (string)
++ _id (string)
 + listId (string, required)
 + name (string, required)
 + description (string)
 + completed: false (boolean)
+
+## User (object)
++ firstName (string)
++ lastName (string)
++ email (string, required)
++ password (string, required)
